@@ -1,0 +1,22 @@
+const { Client, GatewayIntentBits } = require('discord.js');
+const { token } = require("./config.json");
+
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessages] });
+
+client.once('ready', () => {
+    console.log('Bot Online');
+});
+
+client.on('interactionCreate', async (Interaction) => {
+    if (!Interaction.isCommand()) return;
+
+    if (Interaction.commandName == 'ping') {
+        await Interaction.reply("Pong!");
+    } else if (Interaction.commandName === 'ip') {
+        await Interaction.reply("l' ip non è ancora disponibile per gli utenti");
+    } else (Interaction.commandName === 'user'); {
+        await Interaction.reply("Informazioni sull'utente!");
+    }
+});
+
+client.login(token);
